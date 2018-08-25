@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.afernandezh.pocs.integration-tests</groupId>
+    <artifactId>poc-it-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <modules>
+        <module>poc-it-service</module>
+        <module>poc-it-data</module>
+        <module>poc-it-launcher</module>
+    </modules>
+    <packaging>pom</packaging>
+
+    <name>Integration Tests with Real Databases</name>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.4.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <oracle.jdbc.version>11.2.0.3</oracle.jdbc.version>
+    </properties>
+
+    <!--=============================================================================================================-->
+    <!--Dependencies-->
+    <!--=============================================================================================================-->
+    <dependencies>
+
+        <!--Lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!--For test-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!--=============================================================================================================-->
+    <!--Dependencies Management-->
+    <!--=============================================================================================================-->
+    <dependencyManagement>
+
+        <dependencies>
+
+            <!--Oracle-->
+            <dependency>
+                <groupId>oracle</groupId>
+                <artifactId>ojdbc6</artifactId>
+                <version>${oracle.jdbc.version}</version>
+            </dependency>
+
+            <!--Service Module-->
+            <dependency>
+                <groupId>com.afernandezh.pocs.integration-tests</groupId>
+                <artifactId>poc-it-data</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!--Data Module-->
+            <dependency>
+                <groupId>com.afernandezh.pocs.integration-tests</groupId>
+                <artifactId>poc-it-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+        </dependencies>
+
+    </dependencyManagement>
+
+    <!--=============================================================================================================-->
+    <!--Repositories-->
+    <!--=============================================================================================================-->
+    <repositories>
+        <repository>
+            <id>DataNucleus</id>
+            <name>Repo needed for Oracle dependency</name>
+            <url>http://www.datanucleus.org/downloads/maven2/</url>
+        </repository>
+    </repositories>
+
+</project>
