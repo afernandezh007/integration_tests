@@ -1,4 +1,4 @@
-package integrationtests;
+package com.afernandezh.pocs.integrationtests;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

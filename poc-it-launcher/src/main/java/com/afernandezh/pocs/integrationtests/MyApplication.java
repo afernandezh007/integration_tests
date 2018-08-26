@@ -1,4 +1,4 @@
-package integrationtests;
+package com.afernandezh.pocs.integrationtests;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
