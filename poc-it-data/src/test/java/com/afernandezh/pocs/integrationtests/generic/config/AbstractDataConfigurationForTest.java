@@ -1,8 +1,9 @@
-package com.afernandezh.pocs.integrationtests.config;
+package com.afernandezh.pocs.integrationtests.generic.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.jdbc.datasource.init.DatabasePopulator;
@@ -16,6 +17,7 @@ import java.sql.Driver;
  * Abstract parent class for the different configuration classes for each DB provider
  */
 @Slf4j
+@Configuration
 public abstract class AbstractDataConfigurationForTest {
 
     @Value("${datasource.driverClassName}")
