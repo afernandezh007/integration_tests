@@ -8,6 +8,8 @@ public interface DummyRepo {
 
     Long getNextId();
 
+    void resetId(Long id);
+
     Set<DummyTable> findAll();
 
     void create(DummyTable entity);

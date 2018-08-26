@@ -15,9 +15,11 @@ import java.util.Map;
 import java.util.Set;
 
 @Repository("dummyRepoJDBC")
-public class DummyRepoJDBCImpl implements DummyRepo {
+public abstract class DummyRepoJDBCImpl implements DummyRepo {
 
-    private NamedParameterJdbcTemplate jdbcTemplate;
+    protected static final String TABLE_NAME = "poc_jdbc.dummytable";
+
+    protected NamedParameterJdbcTemplate jdbcTemplate;
 
     private DummyTableRowMapper rowMapper = new DummyTableRowMapper();
 
@@ -38,26 +40,17 @@ public class DummyRepoJDBCImpl implements DummyRepo {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    @Override
-    public Long getNextId() {
-        String sql = "SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = :tableName;";
-
-        Map<String, Object> params = new HashMap<>();
-        params.put("tableName", "dummytable");
-
-        return jdbcTemplate.queryForObject(sql, params, Long.class);
-    }
 
     @Override
     public Set<DummyTable> findAll() {
-        String sql = "SELECT * FROM dummytable;";
+        String sql = "SELECT * FROM " + TABLE_NAME + ";";
 
         return new HashSet<>(jdbcTemplate.query(sql, rowMapper));
     }
 
     @Override
     public void create(DummyTable entity) {
-        String sql = "INSERT INTO dummytable(value) VALUES(:value)";
+        String sql = "INSERT INTO " + TABLE_NAME + "(value) VALUES(:value)";
 
         Map<String, Object> params = new HashMap<>();
         params.put("value", entity.getValue());
@@ -67,7 +60,7 @@ public class DummyRepoJDBCImpl implements DummyRepo {
 
     @Override
     public DummyTable read(Long id) {
-        String sql = "SELECT * FROM dummytable WHERE id=:id;";
+        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE id=:id;";
 
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
@@ -77,7 +70,7 @@ public class DummyRepoJDBCImpl implements DummyRepo {
 
     @Override
     public int update(Long id, String value) {
-        String sql = "UPDATE dummytable SET value=:value WHERE id=:id";
+        String sql = "UPDATE " + TABLE_NAME + " SET value=:value WHERE id=:id";
 
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
@@ -88,7 +81,7 @@ public class DummyRepoJDBCImpl implements DummyRepo {
 
     @Override
     public int delete(Long id) {
-        String sql = "DELETE FROM dummytable WHERE id=:id";
+        String sql = "DELETE FROM " + TABLE_NAME + " WHERE id=:id";
 
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
