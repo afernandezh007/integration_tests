@@ -17,7 +17,7 @@ import java.util.Set;
 @Repository("dummyRepoJDBC")
 public abstract class DummyRepoJDBCImpl implements DummyRepo {
 
-    protected static final String TABLE_NAME = "poc_jdbc.dummytable";
+    protected String TABLE_NAME = "poc_jdbc.dummytable";
 
     protected NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -43,7 +43,7 @@ public abstract class DummyRepoJDBCImpl implements DummyRepo {
 
     @Override
     public Set<DummyTable> findAll() {
-        String sql = "SELECT * FROM " + TABLE_NAME + ";";
+        String sql = "SELECT * FROM " + TABLE_NAME;
 
         return new HashSet<>(jdbcTemplate.query(sql, rowMapper));
     }
@@ -60,7 +60,7 @@ public abstract class DummyRepoJDBCImpl implements DummyRepo {
 
     @Override
     public DummyTable read(Long id) {
-        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE id=:id;";
+        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE id=:id";
 
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);

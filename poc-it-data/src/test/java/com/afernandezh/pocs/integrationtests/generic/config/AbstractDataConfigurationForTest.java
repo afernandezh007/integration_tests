@@ -21,23 +21,23 @@ import java.sql.Driver;
 public abstract class AbstractDataConfigurationForTest {
 
     @Value("${datasource.driverClassName}")
-    private String driverClassName;
+    protected String driverClassName;
 
     //admin datasource credentials
     @Value("${datasource.admin.url}")
-    private String adminUrl;
+    protected String adminUrl;
     @Value("${datasource.admin.username}")
-    private String adminUsername;
+    protected String adminUsername;
     @Value("${datasource.admin.password}")
-    private String adminPassword;
+    protected String adminPassword;
 
     //user datasource credentials
     @Value("${datasource.user.url}")
-    private String userUrl;
+    protected String userUrl;
     @Value("${datasource.user.username}")
-    private String userUsername;
+    protected String userUsername;
     @Value("${datasource.user.password}")
-    private String userPassword;
+    protected String userPassword;
 
     /**
      * Bean neccessary to read a properties file correctly
