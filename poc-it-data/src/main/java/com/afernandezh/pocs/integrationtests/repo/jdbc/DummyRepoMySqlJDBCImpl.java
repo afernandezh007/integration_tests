@@ -1,6 +1,5 @@
 package com.afernandezh.pocs.integrationtests.repo.jdbc;
 
-import com.afernandezh.pocs.integrationtests.repo.DummyRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -9,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Repository("dummyRepoMySqlJDBC")
-public class DummyRepoMySqlJDBCImpl extends DummyRepoJDBCImpl implements DummyRepo {
+public class DummyRepoMySqlJDBCImpl extends DummyRepoJDBCImpl{
 
     @Autowired
     public DummyRepoMySqlJDBCImpl(NamedParameterJdbcTemplate jdbcTemplate) {
