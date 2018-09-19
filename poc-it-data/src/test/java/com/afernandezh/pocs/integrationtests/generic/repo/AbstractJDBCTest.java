@@ -29,10 +29,12 @@ public abstract class AbstractJDBCTest {
     private Long initialId;
 
     /**
-     * This method stores the initialId autoincremented to restore after each transaction because this data in DB is changed even with rollback, it is out of the transaction
+     * This method stores the initialId autoincremented to restore after each
+     * transaction because this data in DB is changed even with rollback,
+     * it is out of the transaction
      */
     @BeforeTransaction
-    public void initMethod() {
+    public void beforeMethod() {
         initialId = dummyRepo.getNextId();
         log.info("InitialId = " + initialId);
     }
@@ -41,7 +43,7 @@ public abstract class AbstractJDBCTest {
      * This method restores the initialId autoincremented after each transaction
      */
     @AfterTransaction
-    public void destroyMethod() {
+    public void afterMethod() {
         dummyRepo.resetId(initialId);
         log.info("reset InitialId = " + initialId);
     }
