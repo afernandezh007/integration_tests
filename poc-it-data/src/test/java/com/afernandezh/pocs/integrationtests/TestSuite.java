@@ -1,7 +1,6 @@
 package com.afernandezh.pocs.integrationtests;
 
 import com.afernandezh.pocs.integrationtests.mysql.repo.MySqlJDBCTest;
-import com.afernandezh.pocs.integrationtests.oracle.config.OracleDataConfigurationForTest;
 import com.afernandezh.pocs.integrationtests.oracle.repo.OracleJDBCTest;
 import com.afernandezh.pocs.integrationtests.sqlserver.repo.SqlServerJDBCTest;
 import org.junit.runner.RunWith;
